@@ -1,5 +1,8 @@
 #include "grid.h"
 
+#include <algorithm>
+#include <iostream>
+
 Grid::Grid(uint32_t width, uint32_t height) : width(width), height(height) {
   current_data = std::make_unique<Tile[]>(width * height);
   working_data = std::make_unique<Tile[]>(width * height);
@@ -12,6 +15,17 @@ void Grid::update_with_rule(Tile (*rule)(Tile, uint32_t), uint32_t extent) {
     }
   }
   swap();
+}
+void Grid::set_tile(size_t x, size_t y, Tile state) {
+  current_data.get()[y * width + x] = state;
+}
+void Grid::print() {
+  for (uint32_t y = 0; y < height; y++) {
+    for (uint32_t x = 0; x < width; x++) {
+      std::cout << (get(x, y) == Tile::Alive ? '#' : '.');
+    }
+    std::cout << std::endl;
+  }
 }
 
 Tile Grid::get(uint32_t x, uint32_t y) {
