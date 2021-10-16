@@ -1,7 +1,7 @@
 #include <memory>
 enum class Tile : uint8_t {
-  Dead,
-  Alive,
+  Dead = 0x0,
+  Alive = 0xFF,
 };
 
 struct Grid {
