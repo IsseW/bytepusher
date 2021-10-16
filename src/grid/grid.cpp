@@ -8,10 +8,10 @@ Grid::Grid(uint32_t width, uint32_t height) : width(width), height(height) {
   working_data = std::make_unique<Tile[]>(width * height);
 }
 
-void Grid::update_with_rule(Tile (*rule)(Tile, uint32_t), uint32_t extent) {
+void Grid::update_with_rule(void (*rule)(Grid&, uint32_t x, uint32_t y)) {
   for (uint32_t y = 0; y < height; y++) {
     for (uint32_t x = 0; x < width; x++) {
-      set(x, y, rule(get(x, y), count_neighbors(x, y)));
+      rule(*this, x, y);
     }
   }
   swap();
@@ -29,6 +29,9 @@ void Grid::print() {
 }
 
 Tile Grid::get(uint32_t x, uint32_t y) {
+  if (x >= width || y >= height) {
+    return Tile::Dead;
+  }
   return current_data.get()[y * width + x];
 }
 void Grid::set(uint32_t x, uint32_t y, Tile tile) {
@@ -36,7 +39,8 @@ void Grid::set(uint32_t x, uint32_t y, Tile tile) {
 }
 
 void Grid::swap() { std::swap(current_data, working_data); }
-uint32_t Grid::count_neighbors(uint32_t x, uint32_t y, uint32_t extent) {
+uint32_t Grid::count_neighbors(uint32_t x, uint32_t y, Tile to_count,
+                               uint32_t extent) {
   uint32_t min_x = std::max<int32_t>(x - extent, 0);
   uint32_t max_x = std::min<int32_t>(x + extent, width - 1);
   uint32_t min_y = std::max<int32_t>(y - extent, 0);
@@ -47,7 +51,7 @@ uint32_t Grid::count_neighbors(uint32_t x, uint32_t y, uint32_t extent) {
       if (_x == x && _y == y) {
         continue;
       }
-      if (get(_x, _y) == Tile::Alive) {
+      if (get(_x, _y) == to_count) {
         count++;
       }
     }

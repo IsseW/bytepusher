@@ -4,7 +4,7 @@ CFLAGS = -O0 -Wall
 CLIBS = 
 
 INCLUDE = src
-SOURCE = src/main.cpp src/grid/grid.cpp
+SOURCE = src/main.cpp src/grid/grid.cpp src/grid/rules.cpp
 OUT = app
 
 build:
