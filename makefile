@@ -29,7 +29,7 @@ run: build
 
 gitcommit:
 	git commit -a
-gitpush:
+gitpush: gitpull
 	git push
 gitpull:
 	git pull
