@@ -6,5 +6,10 @@ INCLUDE 	= src
 SOURCE 		= src/main.cpp src/grid/grid.cpp src/grid/rules.cpp src/renderer/renderer.cpp
 OUT 		= app
 
+PHONY = build gitcommit
+
 build:
 	$(CXX) $(CLIBS) $(CFLAGS) -o $(OUT) -I $(INCLUDE) $(SOURCE)
+
+gitcommit:
+	git commit -a

@@ -30,18 +30,20 @@ int main(){
 
     auto callback = [&](const SDL_Event& e) {
         switch (e.type) {
-            case SDL_MOUSEBUTTONDOWN:
+            case SDL_MOUSEBUTTONDOWN: {
                 uint32_t x = e.button.x * GRID_WIDTH / WINDOW_WIDTH;
                 uint32_t y = e.button.y * GRID_HEIGHT / WINDOW_HEIGHT;
                 switch (e.button.button) {
-                    case 0:
+                    case SDL_BUTTON_LEFT:
                         grid.set_tile(x, y, Tile::Alive);
                         break;
                     
                 }
                 break;
+            }
         }
     };
+    renderer.set_manual_event_handler(callback);
 
     while(renderer.poll_events()) {
         last = now;
