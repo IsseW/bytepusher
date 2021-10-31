@@ -9,7 +9,7 @@ SOURCE		= src/main.cpp src/grid/grid.cpp src/grid/rules.cpp src/renderer/rendere
 OBJECTS		= $(SOURCE:$(SRC_FOLDER)/%.cpp=$(BIN_FOLDER)/%.o)
 OUT 		= $(BIN_FOLDER)/app
 
-PHONY 		= build
+PHONY 		= build gitcommit gitpush gitpull
 
 build: $(OUT)
 
@@ -20,3 +20,10 @@ $(BIN_FOLDER)/%.o: $(SRC_FOLDER)/%.cpp
 $(OUT): $(OBJECTS)
 	@mkdir -p $(dir $@)
 	$(CXX) $(CLIBS) $(CFLAGS) -I$(INCLUDE) $^ -o $@
+  
+gitcommit:
+	git commit -a
+gitpush:
+	git push
+gitpull:
+	git pull
