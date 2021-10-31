@@ -1,3 +1,4 @@
+#pragma once
 #include <memory>
 enum class Tile : uint8_t {
   Dead = 0x0,
@@ -9,8 +10,8 @@ struct Grid {
  private:
   uint32_t width;
   uint32_t height;
-  std::unique_ptr<Tile[]> current_data;
-  std::unique_ptr<Tile[]> working_data;
+  std::unique_ptr<uint8_t[]> current_data;
+  std::unique_ptr<uint8_t[]> working_data;
 
   void swap();
 
@@ -33,4 +34,6 @@ struct Grid {
   Grid(uint32_t width, uint32_t height);
 
   void update_with_rule(void (*rule)(Grid&, uint32_t x, uint32_t y));
+
+  const uint8_t* get_texture();
 };
