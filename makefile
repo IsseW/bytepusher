@@ -7,4 +7,4 @@ SOURCE 		= src/main.cpp src/grid/grid.cpp src/grid/rules.cpp src/renderer/render
 OUT 		= app
 
 build:
-	$(CXX) $(CFLAGS) $(CLIBS) -o $(OUT) -I $(INCLUDE) $(SOURCE)
+	$(CXX) $(CLIBS) $(CFLAGS) -o $(OUT) -I $(INCLUDE) $(SOURCE)
