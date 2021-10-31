@@ -1,5 +1,5 @@
 CXX 		= g++
-CFLAGS 		= -O0 -Wall
+CFLAGS 		= -O0 -Wall -g
 CLIBS 		=-lSDL2
 
 INCLUDE 	= src
