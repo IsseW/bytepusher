@@ -9,7 +9,7 @@ SOURCE		= src/main.cpp src/grid/grid.cpp src/grid/rules.cpp src/renderer/rendere
 OBJECTS		= $(SOURCE:$(SRC_FOLDER)/%.cpp=$(BIN_FOLDER)/%.o)
 OUT 		= $(BIN_FOLDER)/app
 
-PHONY 		= build gitcommit gitpush gitpull run
+.PHONY: build clean run gitcommit gitpush gitpull
 
 build: $(OUT)
 
@@ -26,7 +26,6 @@ clean:
 
 run: build
 	$(OUT)
-
 
 gitcommit:
 	git commit -a
