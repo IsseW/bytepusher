@@ -39,12 +39,15 @@ void Grid::set(uint32_t x, uint32_t y, Tile tile) {
 }
 
 void Grid::swap() { std::swap(current_data, working_data); }
+
 uint32_t Grid::count_neighbors(uint32_t x, uint32_t y, Tile to_count,
                                uint32_t extent) {
+                                 
   uint32_t min_x = std::max<int32_t>(x - extent, 0);
   uint32_t max_x = std::min<int32_t>(x + extent, width - 1);
   uint32_t min_y = std::max<int32_t>(y - extent, 0);
   uint32_t max_y = std::min<int32_t>(y + extent, height - 1);
+
   uint32_t count = 0;
   for (uint32_t _y = min_y; _y <= max_y; _y++) {
     for (uint32_t _x = min_x; _x <= max_x; _x++) {
