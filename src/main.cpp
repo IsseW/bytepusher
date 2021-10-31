@@ -43,8 +43,6 @@ int main(){
         }
     };
 
-    
-
     while(renderer.poll_events()) {
         last = now;
         now = SDL_GetPerformanceCounter();
