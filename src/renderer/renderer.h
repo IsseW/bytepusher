@@ -13,7 +13,7 @@ struct Renderer{
         uint32_t ww, uint32_t wh
     );
     ~Renderer();
-    void set_manual_event_hanlder(ManualEventHandler);
+    void set_manual_event_hanlder(ManualEventHandler*);
     void destroy();
     void bulk_send_data(const uint8_t* data);
     void send_data(const uint8_t* data, uint64_t count);

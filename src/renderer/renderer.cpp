@@ -18,7 +18,7 @@ void init_backend(){
     }
 }
 
-void Renderer::set_manual_event_hanlder(ManualEventHandler meh){
+void Renderer::set_manual_event_hanlder(ManualEventHandler* meh){
     this->meh = meh;
 }
 
