@@ -18,6 +18,10 @@ void init_backend(){
     }
 }
 
+void Renderer::set_manual_event_hanlder(ManualEventHandler meh){
+    this->meh = meh;
+}
+
 Renderer::Renderer(
     const std::string& name, 
     uint32_t bw, uint32_t bh,
@@ -63,6 +67,8 @@ void Renderer::finalize(){
 bool Renderer::poll_events(){
     SDL_Event event;
     while(SDL_PollEvent(&event)){
+        if(meh)
+            meh(event);
         switch(event.type){
         case SDL_QUIT:
             destroy();

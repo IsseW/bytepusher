@@ -3,15 +3,17 @@
 #include <string>
 #include <SDL2/SDL.h>
 
-void poll_events();
+using ManualEventHandler = void(const SDL_Event&);
 
 struct Renderer{
+
     Renderer(
         const std::string& name, 
         uint32_t bw, uint32_t bh,
         uint32_t ww, uint32_t wh
     );
     ~Renderer();
+    void set_manual_event_hanlder(ManualEventHandler);
     void destroy();
     void bulk_send_data(const uint8_t* data);
     void send_data(const uint8_t* data, uint64_t count);
@@ -26,4 +28,5 @@ protected:
     SDL_Texture* sdl_text;
     SDL_Window* sdl_win;
     SDL_Renderer* sdl_rend;
+    ManualEventHandler* meh;
 };
